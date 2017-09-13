@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>myArray</title>
+</head>
+<body>
+	
+	<script>
+		
+          let arr = new myArray(3,2,7,5,4,6,1,9,10);
+          arr.push('x','y','z');
+          let index=arr.indexOf('2');
+          let last=arr.lastIndexOf(1);
+          let inclu=arr.includes(3);
+          let rese=arr.reverse();
+          let jo=arr.join('-');
+          let so=arr.sort();
+          let result=arr.some(function(value){
+       	     return value>3;
+          })
+          let result2=arr.every(function(value){
+       	     return value>3;
+          })
+          let result3=arr.filter();
+         	
+          let result4=arr.map(function(value){
+
+              return value*2;
+          })
+          
+          console.log(arr);
+          console.log(index);
+          console.log(last);
+          console.log(inclu);
+          console.log(rese);
+          console.log(jo);
+          console.log(so);
+          console.log(result);
+          console.log(result2);
+          console.log(result3);
+          console.log(result4);
+          
+
+
+          function myArray(){
+              for(let i=0;i<arguments.length;i++){
+              	 this[i]=arguments[i];
+              }
+              this.length=arguments.length;
+             
+              //添加方法
+              this.push=function(){
+              	    for(let i=0;i<arguments.length;i++){
+              		    this[this.length]=arguments[i];
+              		    this.length++;
+              	    }
+              }
+
+              this.indexOf=function(value){
+                    for(let i=0;i<this.length;i++){
+                    	if(this[i]==value){
+                    		 return i;
+                    	}
+                    }
+                    return -1;
+              }
+
+              this.lastIndexOf=function(value){
+              	    for(let i=this.length;i>-1;i--){
+              	    	 if(this[i]==value){
+                              return i;
+              	    	 }
+              	    }
+              	    return -1;
+              }
+
+              this.includes=function(value){
+              	    for(let i=0;i<this.length;i++){
+              	    	 if(this[i]==value){
+              	    	 	 return  true; 
+              	    	 }
+              	    }
+              	    return false;
+              }
+
+              this.reverse=function(){
+                    let newarr=[];
+              	    for(let i=this.length-1;i>-1;i--){
+              	    	 newarr[newarr.length]=this[i];
+              	    }
+              	    return newarr;
+
+              }
+
+              this.join=function(str){
+              	    let result='';
+              	    for(let i=0;i<this.length;i++){
+              	    	
+              	    	if(i<this.length-1){
+
+              	    		result += this[i] + str;
+              	    	}else{
+              	    		result += this[i] ;
+              	    	}
+              	    }
+              	    return result;
+
+              }
+
+              this.sort=function(){
+                    for(let i=0;i<this.length;i++){
+                        for(let j=i+1;j<this.length;j++){
+                            if(this[i]>this[j]){
+                                let temp = this[i];
+                                this[i]=this[j];
+                                this[j]=temp;
+                            }
+                        }
+                
+                    }
+                    return  this;
+
+               }
+
+              this.some=function(fn){
+       	            let  newarr=[];
+       	            for(let i=0;i<this.length;i++){
+       	   	             if(fn(this[i])){
+       	   	   	              return true;
+       	   	             }
+       	            }
+       	            return false;
+              }
+
+              this.every=function(fn){
+       	            let newarr=[];
+       	            for(let i=0;i<this.length;i++){
+       	   	             if(!fn(this[i])){
+       	   	   	                return false;
+       	   	             }
+       	            }
+       	            return true;
+              }
+
+              this.filter=function(fn){
+         	        let newarr=[];
+                    for(let i=0;i<arr.length;i++){
+                          if(this[i]%2==0){
+                                newarr[newarr.length]=this[i];
+                          }
+                    }
+                    return newarr;  
+              }
+         	    
+              this.map=function(fn){
+                    let newarr=[];
+                    for(let i=0;i<this.length;i++){
+                        newarr[newarr.length]=fn(this[i])
+                    }
+                    return newarr;
+              }
+              
+            
+
+              /*              
+               indexOf lastindexOf includes
+               reverse join
+               sort  
+               some every map filter
+               max min
+              */
+
+
+          }
+
+	</script>
+</body>
+</html>
